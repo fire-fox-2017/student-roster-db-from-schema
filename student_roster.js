@@ -90,9 +90,9 @@ class Students{
   }
   viewBirthToday(date){
     var search = date.replace(`${date}`,`-${date}`)
-    db_student.all(`select * from students where birth_date like '%${search}' order by birth_date asc`,(err,rows)=>{
+    db_student.all(`select * from students where birth_date like '%${search}' order by strftime('%m',birth_date) asc`,(err,rows)=>{
       rows.forEach((row) => {
-          console.log(row.id,row.first_name,row.last_name,row.birth_date)
+          console.log(`${row.id} | ${row.first_name} | ${row.last_name} | ${row.birth_date}`)
       })
     })
   }
