@@ -83,11 +83,11 @@ class Student {
 let student = new Student();
 
 // student.addStudent("David", "Johnson", "1992-1-1");
-// student.addStudent("Big", "Ben", "1984-1-1");
+// student.addStudent("Brandin", "Cooks", "1984-04-10");
 
 // student.updateStudentData(6, 'Ben', 'Roth', '1985-1-1');
 
-// student.deleteStudent(8);
+// student.deleteStudent(9);
 // student.listStudents();
 // console.log("----")
 student.listStudentsByName("Ben");
