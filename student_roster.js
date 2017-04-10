@@ -14,12 +14,6 @@ class Student {
     // this.db = new sqlite.Database(this.file);
   }
 
-  addStudent(firstname, lastname, birthdate) {
-    let query = `INSERT INTO Students(firstname, lastname, birthdate) VALUES ('${firstname}', '${lastname}', '${birthdate}')`;
-    this.runQuery(query);
-  }
-
-
   runQuery(query) {
     db.serialize(function () {
       db.run(query, function (err) {
@@ -31,7 +25,20 @@ class Student {
       });
     });
   }
-}
+
+  addStudent(firstname, lastname, birthdate) {
+    let query = `INSERT INTO Students(firstname, lastname, birthdate) VALUES ('${firstname}', '${lastname}', '${birthdate}')`;
+    this.runQuery(query);
+  }
+
+  updateStudentData(id, new_firstname, new_lastname, new_birthdate) {
+    let query =
+      `UPDATE students SET firstname = '${new_firstname}', lastname = '${new_lastname}', birthdate = '${new_birthdate}' WHERE id = ${id}`;
+
+    this.runQuery(query);
+  }
+
+} // end of Student Class
 
 
 // pake repl??
@@ -39,3 +46,6 @@ class Student {
 let student = new Student();
 
 student.addStudent("David", "Johnson", "1992-1-1");
+student.addStudent("Big", "Ben", "1984-1-1");
+
+student.updateStudentData(2, 'Ben', 'Roth', '1985-1-1');
