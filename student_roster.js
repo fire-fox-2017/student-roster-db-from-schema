@@ -43,6 +43,38 @@ class Student {
     this.runQuery(query);
   }
 
+  listStudents() {
+    let query = `SELECT * FROM Students`;
+    db.all(query, function(err, rows) {
+      rows.forEach(function(row) {
+        console.log(`${row.id} ${row.firstname} ${row.lastname} ${row.birthdate}`);
+      })
+    });
+  }
+
+  listStudentsByName(search_name) {
+    let query = `SELECT * FROM Students where firstname like '%${search_name}%' OR lastname like '%${search_name}%'`;
+    db.all(query, function(err, rows) {
+      rows.forEach(function(row) {
+        console.log(`${row.id} ${row.firstname} ${row.lastname} ${row.birthdate}`);
+      })
+    });
+  }
+
+  listStudentsBirthday() {
+    let query = `SELECT * FROM Students where to_char(birthdate, 'MM') = '01'`;
+  }
+
+  runQuerySelect(query) {
+    db.all(query, function(err, rows) {
+      rows.forEach(function(row) {
+        console.log(`${row.id} ${row.firstname} ${row.lastname} ${row.birthdate}`);
+      })
+    });
+  }
+
+
+
 } // end of Student Class
 
 
@@ -55,4 +87,7 @@ let student = new Student();
 
 // student.updateStudentData(6, 'Ben', 'Roth', '1985-1-1');
 
-student.deleteStudent(8);
+// student.deleteStudent(8);
+// student.listStudents();
+// console.log("----")
+student.listStudentsByName("Ben");
