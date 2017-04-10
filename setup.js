@@ -1,9 +1,6 @@
 "use strict"
 
 //write your code here
-"use strict"
-
-//write your code here
 const repl = require('repl');
 const sqlite = require('sqlite3').verbose();
 // const sqlite = require('sqlite');
