@@ -14,6 +14,9 @@ class Student {
     this.REPLServer.context.list_all_student = this.list_all_student;
     this.REPLServer.context.list_student_by_name = this.list_student_by_name;
     this.REPLServer.context.list_student_by_attr = this.list_student_by_attr;
+    this.REPLServer.context.list_this_month_birthday = this.list_this_month_birthday;
+    this.REPLServer.context.sort_birthday = this.sort_birthday;
+    this.showMenu();
   }
   //Add students
   add_student(firstname, lastname, birthdate){
@@ -116,6 +119,48 @@ class Student {
       });
     });
   }
+  //List this month birthday
+  list_this_month_birthday(){
+    let file = 'student.db';
+    let db = new sqlite.Database(file);
+    var LIST_MONTH_BIRTHDAY = `SELECT * FROM students where strftime('%m',birthdate)=strftime('%m','now') ;`;
+    db.serialize(function(){
+        db.each(LIST_MONTH_BIRTHDAY, function(err, row){if (err){
+          console.log(err);
+        } else {
+          console.log(row.id, row.firstname, row.lastname, row.birthdate);
+          //console.log('List All Student Data Succesfull');
+        }
+      });
+    });
+  }
+  //Sort Birthday
+  sort_birthday(thismonth){
+    let file = 'student.db';
+    let db = new sqlite.Database(file);
+    var SORT_BIRTHDAY = `SELECT * FROM students ORDER BY strftime('%m',birthdate),strftime('%w',birthdate);`;
+    db.serialize(function(){
+        db.each(SORT_BIRTHDAY, function(err, row){if (err){
+          console.log(err);
+        } else {
+          console.log(row.id, row.firstname, row.lastname, row.birthdate);
+          //console.log('List All Student Data Succesfull');
+        }
+      });
+    });
+  }
+
+  showMenu() {
+    console.log(`WELCOME!!`);
+    console.log(`- Menambahkan Student : add_student('[firstname]','[lastname]','[Year-Month-Day]')`);
+    console.log(`- Update data student berdasarkan id : update_student('[firstname]','[lastname]','[Year-Month-Day]','[id]')`);
+    console.log(`- Menghapus student berdasarkan id : delete_student([id])`);
+    console.log(`- Menampilkan daftar semua student : list_all_student()`);
+    console.log(`- Menampilkan student berdasarkan name tertentu, pilih salah satu untuk nama depan atau nama belakang : list_student_by_name('[firstname || lastname]')`);
+    console.log(`- Menampilkan student dengan sesui atribut search yang diinginkan : list_student_by_attr([attribute],[value])`);
+    console.log(`- Menampilkan student yang berulang tahun bulan ini : list_this_month_birthday()`);
+    console.log(`- Menampilkan urutan semua student berdasarkan ulang tahun : sort_birthday()`);
+}
 
 }
 
