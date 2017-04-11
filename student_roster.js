@@ -91,7 +91,7 @@ class Student {
    console.log('deleteStudent(id)');
    console.log('listStudents()');
    console.log('searchStudentName(name)');
-   console.log('searchStudent(attribute,name)');
+   console.log('searchStudent(attribute,value)');
    console.log('listBirthMonth()');
    console.log('listBirthday()')
  }
