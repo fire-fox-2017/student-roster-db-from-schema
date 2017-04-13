@@ -21,6 +21,7 @@ class Student {
                 }
             });
         });
+        return 'Query Add.';
     }
     updateStudent(id, firstname, lastname, birthdate) {
         db.serialize(function() {
@@ -32,6 +33,7 @@ class Student {
                 }
             });
         });
+        return 'Query Update.';
     }
     deleteStudent(id) {
         db.serialize(function() {
@@ -43,6 +45,7 @@ class Student {
                 }
             });
         });
+        return 'Query Delete.';
     }
     showStudent() {
         db.serialize(function() {
@@ -50,10 +53,12 @@ class Student {
                 if (err) {
                     console.log(err);
                 } else {
+                    // console.log(JSON.stringify(row, null, 2));
                     console.log(`${row.id} | ${row.firstname} | ${row.lastname} | ${row.birthdate}`);
                 }
             });
         });
+        return 'Query Show.';
     }
     findStudent(name) {
         db.serialize(function() {
@@ -65,6 +70,7 @@ class Student {
                 }
             });
         });
+        return 'Query Find.';
     }
     attribStudent(params, value) {
         db.serialize(function() {
@@ -76,6 +82,7 @@ class Student {
                 }
             });
         });
+        return 'Query Attrib.';
     }
     birthStudent() {
         db.serialize(function() {
@@ -87,6 +94,7 @@ class Student {
                 }
             });
         });
+        return 'Query Birth.';
     }
     sortBirth() {
         db.serialize(function() {
@@ -98,7 +106,7 @@ class Student {
                 }
             });
         });
-
+        return 'Query Sorth Birth.';
     }
     help() {
         console.log(`add <firstname,lastname,birthdate>`);
@@ -109,6 +117,7 @@ class Student {
         console.log(`findattrib <attrib,value>`);
         console.log(`birthday`);
         console.log(`sortbirth`);
+        return 'Query Help.';
     }
 }
 
