@@ -120,9 +120,9 @@ class Student {
 
   }
 
-  static sortingBirthday() {
+  static sortingBirthday(param) {
   // berurutan januari - desember
-    let SORTING_BIRTHDAY = `SELECT * FROM students ORDER BY strftime('%m', birthdate)`;
+    let SORTING_BIRTHDAY = `SELECT * FROM students ORDER BY strftime('%m', birthdate) ${param}`;
     db.serialize(function() {
       db.all(SORTING_BIRTHDAY, function(err, data) {
         if(err) {
