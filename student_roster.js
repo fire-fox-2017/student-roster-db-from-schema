@@ -153,7 +153,9 @@ class Student{
           let str = row.birthdate;
           let bulanBirth = str.split('-');
 
-          if(bulanBirth[1] == bulan){
+          if((bulanBirth[1]) == bulan){
+            // console.log(bulanBirth[1]);
+            // console.log(bulan);
             console.log(`${row.id} | ${row.firstname} | ${row.lastname} | ${row.birthdate}`);
           }
         })

@@ -19,7 +19,7 @@ let createTable = () => {
       if (err){
         console.log(err);
       } else {
-        console.log(CREATE TABLE);
+        console.log('Sukses');
       }
     })
   });
@@ -31,7 +31,7 @@ let seedData = () => {
       if (err){
         console.log(err);
       } else {
-        console.log(SEED DATA);
+        console.log('Sukses');
       }
     })
   });
