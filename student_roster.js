@@ -11,21 +11,6 @@ class Students {
     this.query = ``;
   }
 
-  // createTable () {
-  //   let CREATE_TABLE = `CREATE TABLE IF NOT EXISTS students ( id INTEGER PRIMARY KEY
-  //     AUTOINCREMENT, firstname TEXT NOT NULL, lastname TEXT, birthdate DATE);`;
-  //   let db = new sqlite.Database(`student.db`);
-  //   db.serialize(function () {
-  //     db.run(CREATE_TABLE, (err) => {
-  //       if (err) {
-  //         console.log(err);
-  //       } else {
-  //         console.log('Create table succeed');
-  //       }
-  //     });
-  //   });
-  // }
-
   insertStudent (firstname, lastname, birthdate) {
     if (firstname && lastname && birthdate) {
       let INSERT_STUDENT = `INSERT INTO students (firstname, lastname, birthdate)
@@ -44,25 +29,6 @@ class Students {
       console.log('The argument is not complete');
     }
   }
-
-  // updateStudent (id, argument) {
-  //   let UPDATE_STUDENT = `UPDATE students SET `;
-  //   let object = JSON.parse(argument);
-  //   for (var property in object) {
-  //     UPDATE_STUDENT += `'${property}' = '${object.property}', `;
-  //   }
-  //   UPDATE_STUDENT += `WHERE id = ${id};`;
-  //   let db = new sqlite.Database(`student.db`);
-  //   db.serialize(function () {
-  //     db.run(UPDATE_STUDENT, (err) => {
-  //       if (err) {
-  //         console.log(err);
-  //       } else {
-  //         console.log('Update student succeed');
-  //       }
-  //     });
-  //   });
-  // }
 
   updateStudent (id, firstname, lastname, birthdate) {
     let UPDATE_STUDENT = `UPDATE students SET firstname = '${firstname}',
@@ -101,29 +67,11 @@ class Students {
         if (err) {
           console.log(err);
         } else {
-          console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
+          console.log(`${JSON.stringify(row)}`);
         }
       });
     });
   }
-
-  // showStudent (firstname, lastname) {
-  //   let SHOW_STUDENT = `SELECT * FROM students `;
-  //   if (firstname != undefined) {
-  //     SHOW_STUDENT += `WHERE firstname = '${firstname}' `
-  //   }
-  //   if (lastname != undefined) {
-  //     SHOW_STUDENT += `AND lastname = '${lastname}' `
-  //   }
-  //   SHOW_STUDENT += `;`;
-  //   console.log(SHOW_STUDENT);
-  //   let db = new sqlite.Database(`student.db`);
-  //   db.serialize(function () {
-  //     db.each(SHOW_STUDENT, (err, row) => {
-  //       console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
-  //     });
-  //   });
-  // }
 
   showStudent (name) {
     let SHOW_STUDENT = `SELECT * FROM students WHERE firstname LIKE '%${name}%'
@@ -134,7 +82,7 @@ class Students {
         if (err) {
           console.log(err);
         } else {
-          console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
+          console.log(`${JSON.stringify(row)}`);
         }
       });
     });
@@ -148,7 +96,7 @@ class Students {
         if (err) {
           console.log(err);
         } else {
-          console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
+          console.log(`${JSON.stringify(row)}`);
         }
       });
     });
@@ -163,7 +111,7 @@ class Students {
         if (err) {
           console.log(err);
         } else {
-          console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
+          console.log(`${JSON.stringify(row)}`);
         }
       });
     });
@@ -178,7 +126,7 @@ class Students {
         if (err) {
           console.log(err);
         } else {
-          console.log(`${row.id}|${row.firstname}|${row.lastname}|${row.birthdate}`);
+          console.log(`${JSON.stringify(row)}`);
         }
       });
     });
@@ -186,17 +134,7 @@ class Students {
 
   printHelp() {
     console.log(
-      `>>>>>>>>>> Command Help <<<<<<<<<<
-      1. Insert Student                 : insertStudent(firstname, lastname, birthdate)
-      2. Update Student                 : updateStudent(id, firstname, lastname, birthdate)
-      3. Delete Student                 : deleteStudent(id)
-      4. Show All Students              : showAll()
-      5. Show Students by Name          : showStudent(name)
-      6. Show Students by Attribute     : showStudentAttr(attribute, value)
-      7. Show Students that have birthdays this month: showBirthdayThisMonth()
-      8. Show Students by Sorted Month  : showSortedBirthday()
-      9. Help                           : help()
-      `
+      `1. insertStudent(firstname, lastname, birthdate)\n2. updateStudent(id, firstname, lastname, birthdate)\n3. deleteStudent(id)\n4. showAll()\n5. showStudent(name)\n6. showStudentAttr(attribute, value)\n7. showBirthdayThisMonth()\n8. showSortedBirthday()\n9. help()`
     );
   }
 }
