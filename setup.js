@@ -1,5 +1,6 @@
 "use strict"
 
+
 const repl = require('repl');
 const sqlite = require('sqlite3').verbose();
 //write your code here
@@ -27,6 +28,7 @@ let createTable = () => {
 
 
 let seedData = () =>{
+  var SEED_DATA = "INSERT INTO students (firstname, lastname, birthdate) VALUES ('Rubi', 'Henjaya', '1986-11-20'), ('Riza', 'Fahmi', '1983-12-31');";
   db.serialize(function() {
       db.run(SEED_DATA, function(err) {
           if (err) {
