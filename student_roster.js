@@ -12,8 +12,8 @@ class Students{
   }
   help(){
     console.log(`- help()`);
-    console.log(`- addData('first_name','last_name','birth-date ex: yyyy-mm-day')`);
-    console.log(`- updateData(id,'first_name','last_name','birth-date ex: yyyy-mm-day')`);
+    console.log(`- addData('first_name','last_name','birth-date ex: yyyy-mm-dd')`);
+    console.log(`- updateData(id,'first_name','last_name','birth-date ex: yyyy-mm-dd')`);
     console.log(`- deleteData(id)`);
     console.log(`- viewData()`);
     console.log(`- viewDataName('first_name','last_name') : Menampilkan Data Berdasarkan first_name && last_name`);
@@ -80,8 +80,8 @@ class Students{
     })
   }
   viewBirthday(month){
-  //  var search = month.replace(`${month}`,`-${month}-`)
-    db_student.all(`select * from students where birth_date like '%-${month}-%'`,(err,rows)=>{
+   var search = month.replace(`${month}`,`-${month}-`)
+    db_student.all(`select * from students where birth_date like '%${search}%' order by strftime('%d', birth_date) asc`,(err,rows)=>{
       rows.forEach((row) => {
           console.log(row.id,row.first_name,row.last_name,row.birth_date)
       })
@@ -90,7 +90,7 @@ class Students{
   }
   viewBirthToday(date){
     var search = date.replace(`${date}`,`-${date}`)
-    db_student.all(`select * from students where birth_date like '%${search}' order by strftime('%m',birth_date) asc`,(err,rows)=>{
+    db_student.all(`select * from students where birth_date like '%${search}' order by strftime('%m',birth_date), strftime('%d', birth_date) asc`,(err,rows)=>{
       rows.forEach((row) => {
           console.log(`${row.id} | ${row.first_name} | ${row.last_name} | ${row.birth_date}`)
       })
